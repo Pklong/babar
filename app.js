@@ -11,6 +11,4 @@ app.get('*', (req, res) => {
   res.status(200).send({message: 'wutz gud?'})
 })
 
-app.listen(3000, () => {
-  console.log('running on localhost:3000')
-})
+module.exports = app
