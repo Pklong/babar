@@ -1,13 +1,18 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Todo = sequelize.define('Todo', {
-    title: DataTypes.STRING
+module.exports = function (sequelize, DataTypes) {
+  const Todo = sequelize.define('Todo', {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+      associate: function (models) {
+        Todo.hasMany(models.TodoItem, {
+          foreignKey: 'todoId',
+          as: 'todoItems'
+        })
       }
     }
-  });
-  return Todo;
-};
+  })
+  return Todo
+}
