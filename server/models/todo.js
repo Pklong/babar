@@ -4,15 +4,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate: function (models) {
-        Todo.hasMany(models.TodoItem, {
-          foreignKey: 'todoId',
-          as: 'todoItems'
-        })
-      }
-    }
   })
+
+  Todo.associate = function (models) {
+    Todo.hasMany(models.TodoItem, {
+      foreignKey: 'todoId',
+      as: 'todoItems'
+    })
+  }
+
   return Todo
 }

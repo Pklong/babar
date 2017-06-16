@@ -8,15 +8,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
-  }, {
-    classMethods: {
-      associate: function (models) {
-        TodoItem.belongsTo(models.Todo, {
-          foreignKey: 'todoId',
-          onDelete: 'CASCADE'
-        })
-      }
-    }
   })
+  TodoItem.associate = function (models) {
+    TodoItem.belongsTo(models.Todo, {
+      foreignKey: 'todoId',
+      onDelete: 'CASCADE'
+    })
+  }
   return TodoItem
 }
